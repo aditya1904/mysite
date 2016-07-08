@@ -5,6 +5,7 @@ from django.db import models
 # Create your models here.
 class Question(models.Model):
 	question_text = models.CharField(max_length=250)
+	question_descripton = models.CharField(max_length=400, default="")
 	pub_date = models.DateTimeField('date published')
 	voted_users = models.ManyToManyField(User, blank=True,)
 	total_votes = models.IntegerField(default=0)

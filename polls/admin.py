@@ -8,6 +8,7 @@ class ChoiceInline(admin.TabularInline):
 class QuestionAdmin(admin.ModelAdmin):
 	fieldsets = [
 		(None, {'fields':['question_text']}),
+		('Question Description',{'fields':['question_descripton']}),
 		('Date information',{'fields':['pub_date']}),
 		('Total Votes',{'fields':['total_votes']}),
 		('Voted Users',{'fields':['voted_users']}),

@@ -98,3 +98,6 @@ class UserView(generic.ListView):
 class UserDetailView(generic.DetailView):
 	model = User
 	template_name = 'polls/user_detail.html'
+	#context_object_name = 'question_list'
+
+

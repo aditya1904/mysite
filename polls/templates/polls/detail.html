@@ -1,10 +1,40 @@
-<h1>{{ question.question_text }}</h1>
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<form action="{% url 'polls:vote' question.id %}" method="post">
-{% csrf_token %}
-{% for choice in question.choice_set.all %}
-<input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-<label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
-{% endfor %}
-<input type="submit" value="Vote" />
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{{question.question_text}}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+	<div class="text-center">
+	<div class="page-header"><h1>{{ question.question_text }}</h1></div>
+    <pre>{{question.question_descripton}}</pre>
+        </br>
+	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+	<form action="{% url 'polls:vote' question.id %}" method="post">
+	
+	{% csrf_token %}
+	<div class="row">
+	   <div class="btn-group btn-group-vertical" data-toggle="buttons">
+	{% for choice in question.choice_set.all %}
+		
+		<label class="btn well btn-lg btn-success text-info" style="color:#00264d;" for="choice{{ forloop.counter }}">
+		<input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />{{ choice.choice_text }}
+		</label>
+		
+	{% endfor %}
+	   </div>
+	</div>
+	</br>
+     <input type="submit" class="btn btn-success btn-lg" value="Vote" />
+
+	</form>
+</div>
+</div>
+</body>
+</html>
